@@ -115,7 +115,26 @@ To run written tests, run
    ```
 ---
 
+
 ## Ports where other applications are running
 
 - MongoDB: http://localhost:27017
 - FastApi: http://localhost:8000
+
+## Links for documentations
+- Swagger: http://localhost:8000/docs
+- Redocly: http://localhost:8000/redoc
+
+
+
+## Known Flaws
+- The current setup does not include redundancy for the MongoDB database, making it a single point of failure.
+- The `GetWordDetails` API does not allow users to choose source and destination languages for translations.
+- The `translate_api`, written in NodeJS, occasionally fails to receive proper requests from Google Translate.
+- The application may face scalability issues under high load as it relies on a single instance of MongoDB.
+
+## Possible Improvements
+- Develop a custom parser in Python instead of relying on the NodeJS package and backend to enhance reliability and integration.
+- Integrate monitoring tools like Prometheus and Grafana to monitor application performance and health
+- Add additional query parameters for `GetWordDetails` to allow users to specify source and destination languages.
+- Implement a replica set for MongoDB to ensure high availability and data redundancy.

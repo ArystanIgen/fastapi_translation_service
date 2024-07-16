@@ -91,7 +91,8 @@ class BadGatewayError(APIError):
     def __init__(self) -> None:
         super().__init__(
             code=Code.BadGateway,
-            message="Error connecting to third party service",
+            message="Error connecting to third party service. "
+                    "Please try again later",
             status_code=status.HTTP_502_BAD_GATEWAY,
         )
 

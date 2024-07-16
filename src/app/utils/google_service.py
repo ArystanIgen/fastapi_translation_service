@@ -17,17 +17,21 @@ async def fetch_from_google_translate(
 ) -> WordIn | None:
     async with httpx.AsyncClient() as client:
 
-        response = await client.post(
-            f"{CONFIG.translate_service_url}/translate",
-            json={
-                "text": word,
-                "source_lang": source_lang,
-                "dest_lang": dest_lang,
-            },
-        )
-        if response.status_code != 200:
-            logger.error(f"Failed to fetch translation: {response.json()}")
-            raise BadGatewayError
+        try:
+            response = await client.post(
+                f"{CONFIG.translate_service_url}/translate",
+                json={
+                    "text": word,
+                    "source_lang": source_lang,
+                    "dest_lang": dest_lang,
+                },
+            )
+            response.raise_for_status()
+        except (httpx.RequestError, httpx.HTTPStatusError) as exc:
+            logger.error(
+                f"An error occurred while requesting {exc.request.url!r}."
+            )
+            raise BadGatewayError from exc
 
         data = response.json()
         translations = []
