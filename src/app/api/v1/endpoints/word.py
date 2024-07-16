@@ -4,6 +4,7 @@ from fastapi import APIRouter, status
 
 from app.api.deps import SessionDep, WordParamsDep, WordRepoDep
 from app.exceptions import (
+    BadGatewayError,
     GoogleWordNotFoundError,
     WordNotFoundError,
     openapi_handle_error,
@@ -21,7 +22,10 @@ router = APIRouter()
     "/{word}",
     response_model=WordOut,
     status_code=status.HTTP_200_OK,
-    responses=openapi_handle_error(GoogleWordNotFoundError),
+    responses=openapi_handle_error(
+        GoogleWordNotFoundError,
+        BadGatewayError
+    ),
     summary="GetWordDetails",
     description="Get Word Details",
     operation_id="GetWordDetails",
@@ -56,7 +60,6 @@ async def get_word_details_api(
     "",
     response_model=WordsPaginate,
     status_code=status.HTTP_200_OK,
-    # responses=openapi_handle_error(DataRequirementNotFoundError),
     summary="GetListOfWords",
     description="Get List of Words",
     operation_id="GetListOfWords",
