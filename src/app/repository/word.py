@@ -4,11 +4,11 @@ from odmantic.session import AIOSession
 
 from app.models import WordModel
 from app.repository.base import BaseRepository
-from app.schemas import WordIn, WordOut, WordsPaginate
+from app.schemas import WordOut, WordsPaginate, WordUpdate
 from app.utils.params import IncludeFields
 
 
-class WordRepository(BaseRepository[WordModel, WordIn]):
+class WordRepository(BaseRepository[WordModel, WordUpdate]):
     model = WordModel
 
     async def get_words(

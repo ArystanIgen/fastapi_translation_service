@@ -40,7 +40,7 @@ case "$ENV" in
 "PRODUCTION")
     update_python_path
     wait_for_mongo
-    gunicorn --config gunicorn.conf.py app.main:main_app --reload --capture-output --log-level info --access-logfile -
+    uvicorn app.main:main_app --host 0.0.0.0 --port 8000 --proxy-headers --workers 5
     ;;
 *)
     echo "NO ENV SPECIFIED!"

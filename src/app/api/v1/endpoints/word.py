@@ -35,10 +35,16 @@ async def get_word_details_api(
 ) -> WordModel:
     fetched_word: WordModel | None = await word_repo.get(session, word=word)
     if not fetched_word:
-        word_details: WordIn | None = await fetch_from_google_translate(
+        word_details: WordIn = await fetch_from_google_translate(
             word=word
         )
-        if not word_details:
+        if (
+            not word_details.definitions
+        ) and (
+            not word_details.examples
+        ) and (
+            not word_details.translations
+        ):
             raise GoogleWordNotFoundError
         return await word_repo.create(
             session, db_obj=WordModel(**word_details.model_dump())

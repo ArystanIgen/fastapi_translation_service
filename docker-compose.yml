@@ -3,7 +3,7 @@ services:
 
   translate_api:
     build:
-      context: google-translate-api
+      context: nodejs-google-translate-api
       dockerfile: Dockerfile
     networks:
       - common-network
@@ -21,6 +21,7 @@ services:
       - .env
     depends_on:
       - mongo
+      - translate_api
     ports:
       - 8000:8000
     networks:

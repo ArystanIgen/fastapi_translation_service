@@ -40,7 +40,7 @@ main_app.add_middleware(BaseHTTPMiddleware, dispatch=log_requests)
 main_app.add_exception_handler(
     RequestValidationError, validation_exception_handler  # type:ignore
 )
-main_app.add_exception_handler(APIError, api_error_handler) # type:ignore
+main_app.add_exception_handler(APIError, api_error_handler)  # type:ignore
 
 main_app.include_router(router=api_router, prefix=CONFIG.api.prefix)
 main_app.include_router(

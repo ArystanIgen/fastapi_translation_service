@@ -9,18 +9,18 @@
 ## Steps to run the application with Docker Compose
 
 1. Make sure you have Docker installed on your machine.
-```sh
-$ docker version && docker compose version
+```bash
+docker version && docker compose version
 ```
 
 2. Make sure you create Docker network.
-```sh
-$ make network
+```bash
+make network
 ```
 
-3. Run Docker Compose
-```sh
-$ make build
+3. Build and Run Docker containers.
+```bash
+make build
 ```
 ---
 ## 📕 API Documentation
@@ -95,7 +95,6 @@ Status: 200 OK
 ```http request
 PATCH /v1/words/{word} HTTP/1.1
 Host: fastapi-transaltion-service
-Content-Type: application/json
 ```
 #### Response
 Status: 204 No Content
@@ -103,15 +102,15 @@ Status: 204 No Content
 ---
 ## Tests
 To run written tests, run
-   ```sh
-   make test
-   ```
+```bash
+make test
+ ```
 ---
 
 ## Linters
-To run written tests, run
-   ```sh
-   make lint
+To run linters, run:
+```bash
+make lint
    ```
 ---
 
