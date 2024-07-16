@@ -61,10 +61,10 @@ def openapi_handle_error(*args) -> Dict[int | str, Dict[str, Any]] | None:
 
 
 class InvalidRequestError(APIError):
-    def __init__(self) -> None:
+    def __init__(self, message: str = "Validation Error") -> None:
         super().__init__(
             code=Code.InvalidRequest,
-            message="Validation Error",
+            message=message,
             status_code=status.HTTP_400_BAD_REQUEST,
         )
 

@@ -7,6 +7,8 @@ from odmantic.query import asc, desc
 from odmantic.session import AIOSession
 from pydantic import BaseModel
 
+from app.exceptions import InvalidRequestError
+
 logger = logging.getLogger(__name__)
 
 ModelType = TypeVar("ModelType", bound=Model)
@@ -75,7 +77,9 @@ class BaseRepository(Generic[ModelType, UpdateSchemaType]):
 
         # Check if the attribute exists in the model
         if not hasattr(self.model, field_name):
-            raise ValueError(f"Invalid sort field: {field_name}")
+            raise InvalidRequestError(
+                message=f"Invalid sort field: {field_name}"
+            )
 
         field = getattr(self.model, field_name)
 

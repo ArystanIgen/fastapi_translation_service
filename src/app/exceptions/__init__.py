@@ -1,8 +1,9 @@
 from app.exceptions.api import (
-                                BadGatewayError,
-                                GoogleWordNotFoundError,
-                                WordNotFoundError,
-                                openapi_handle_error,
+    BadGatewayError,
+    GoogleWordNotFoundError,
+    InvalidRequestError,
+    WordNotFoundError,
+    openapi_handle_error,
 )
 
 __all__ = [
@@ -10,4 +11,5 @@ __all__ = [
     "WordNotFoundError",
     "GoogleWordNotFoundError",
     "BadGatewayError",
+    "InvalidRequestError"
 ]
