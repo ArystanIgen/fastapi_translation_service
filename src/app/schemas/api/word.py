@@ -78,7 +78,7 @@ class WordOut(BaseModel):
 
 
 class WordsPaginate(BaseModel):
-    items: list[WordOut]
+    items: List[WordOut]
     total: int = 0
     page: int
     size: int

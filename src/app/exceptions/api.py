@@ -49,7 +49,7 @@ async def api_error_handler(_: Request, error: APIError) -> JSONResponse:
     return JSONResponse(status_code=error.status_code, content=error.to_dict())
 
 
-def openapi_handle_error(*args) -> Dict[int | str, dict[str, Any]] | None:
+def openapi_handle_error(*args) -> Dict[int | str, Dict[str, Any]] | None:
     errors_dict = {}
     for error in args:
         error_dict = error().get_dict()
