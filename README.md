@@ -93,7 +93,7 @@ Status: 200 OK
 ### 3. DeleteWordDetails
 #### Request
 ```http request
-PATCH /v1/words/{word} HTTP/1.1
+DELETE /v1/words/{word} HTTP/1.1
 Host: fastapi-transaltion-service
 ```
 #### Response
